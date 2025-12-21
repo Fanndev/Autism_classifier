@@ -7,6 +7,8 @@ keras>=3.0.0
 
 # Image Processing
 opencv-python
+mtcnn
+Pillow
 
 # Data Science & Visualization
 numpy
@@ -22,3 +24,8 @@ rich
 # Jupyter Notebook (optional, for training)
 jupyter
 ipykernel
+
+
+# Additional Libraries
+mtcnn
+Pillow

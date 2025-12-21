@@ -1,0 +1,340 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Beranda - Autism
+Classifier{% endblock %} {% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <h1 class="display-4 fw-bold mb-4">
+          Deteksi Dini <span class="text-primary">Autisme</span> dengan AI
+        </h1>
+        <p class="lead text-muted mb-4">
+          Aplikasi berbasis kecerdasan buatan untuk membantu mendeteksi
+          ciri-ciri autisme melalui analisis gambar wajah menggunakan teknologi
+          MTCNN dan Deep Learning.
+        </p>
+        <div class="d-flex gap-3">
+          <a href="#upload-section" class="btn btn-primary btn-lg px-4">
+            <i class="bi bi-upload me-2"></i>Mulai Analisis
+          </a>
+          <a
+            href="{% url 'about' %}"
+            class="btn btn-outline-secondary btn-lg px-4"
+          >
+            Pelajari Lebih Lanjut
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-image text-center">
+          <img
+            src="{% static 'img/hero-illustration.svg' %}"
+            alt="AI Analysis"
+            class="img-fluid"
+            onerror="this.style.display='none'"
+          />
+          <div
+            class="hero-placeholder p-5 bg-light rounded-4 d-flex flex-column align-items-center justify-content-center"
+            style="min-height: 300px"
+          >
+            <i class="bi bi-cpu text-primary" style="font-size: 5rem"></i>
+            <h4 class="mt-3 text-muted">AI-Powered Analysis</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div
+              class="feature-icon bg-primary bg-opacity-10 rounded-circle p-3 d-inline-flex mb-3"
+            >
+              <i class="bi bi-camera text-primary fs-3"></i>
+            </div>
+            <h5 class="card-title">Face Detection</h5>
+            <p class="card-text text-muted">
+              Menggunakan MTCNN untuk mendeteksi dan menyelaraskan wajah secara
+              akurat.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div
+              class="feature-icon bg-success bg-opacity-10 rounded-circle p-3 d-inline-flex mb-3"
+            >
+              <i class="bi bi-graph-up-arrow text-success fs-3"></i>
+            </div>
+            <h5 class="card-title">Deep Learning</h5>
+            <p class="card-text text-muted">
+              Model CNN yang telah dilatih untuk klasifikasi dengan akurasi
+              tinggi.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div
+              class="feature-icon bg-info bg-opacity-10 rounded-circle p-3 d-inline-flex mb-3"
+            >
+              <i class="bi bi-lightning-charge text-info fs-3"></i>
+            </div>
+            <h5 class="card-title">Hasil Cepat</h5>
+            <p class="card-text text-muted">
+              Dapatkan hasil analisis dalam hitungan detik dengan tingkat
+              kepercayaan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upload Section -->
+<section id="upload-section" class="upload-section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">Upload Gambar untuk Analisis</h2>
+          <p class="text-muted">
+            Upload gambar wajah untuk mendapatkan hasil prediksi. Pastikan wajah
+            terlihat jelas dan tidak terhalang.
+          </p>
+        </div>
+
+        <div class="upload-card card border-0 shadow">
+          <div class="card-body p-4 p-md-5">
+            <form id="upload-form" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <!-- Dropzone -->
+              <div class="dropzone" id="dropzone">
+                <input
+                  type="file"
+                  name="image"
+                  id="image-input"
+                  accept="image/jpeg,image/png,image/jpg"
+                  class="d-none"
+                />
+
+                <div
+                  class="dropzone-content text-center py-5"
+                  id="dropzone-content"
+                >
+                  <i
+                    class="bi bi-cloud-arrow-up text-primary"
+                    style="font-size: 4rem"
+                  ></i>
+                  <h4 class="mt-3">Drag & Drop gambar di sini</h4>
+                  <p class="text-muted mb-3">atau</p>
+                  <button
+                    type="button"
+                    class="btn btn-primary px-4"
+                    id="browse-btn"
+                  >
+                    <i class="bi bi-folder2-open me-2"></i>Pilih File
+                  </button>
+                  <p class="text-muted mt-3 mb-0 small">
+                    Format: JPG, PNG | Maksimum: 10MB
+                  </p>
+                </div>
+
+                <!-- Preview -->
+                <div class="preview-container d-none" id="preview-container">
+                  <img
+                    src=""
+                    alt="Preview"
+                    class="preview-image img-fluid rounded"
+                    id="preview-image"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger remove-btn"
+                    id="remove-btn"
+                  >
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-grid mt-4">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  id="submit-btn"
+                  disabled
+                >
+                  <span class="btn-text">
+                    <i class="bi bi-cpu me-2"></i>Analisis Gambar
+                  </span>
+                  <span class="btn-loading d-none">
+                    <span class="spinner-border spinner-border-sm me-2"></span>
+                    Memproses...
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section mt-5 d-none" id="result-section">
+          <div class="result-card card border-0 shadow" id="result-card">
+            <div class="card-body p-4 p-md-5 text-center">
+              <!-- Result Icon -->
+              <div class="result-icon mb-4" id="result-icon">
+                <i
+                  class="bi bi-check-circle-fill text-success"
+                  style="font-size: 5rem"
+                ></i>
+              </div>
+
+              <!-- Result Label -->
+              <h2 class="fw-bold mb-2" id="result-label">Non-Autistic</h2>
+
+              <!-- Confidence -->
+              <div class="confidence-section my-4">
+                <p class="text-muted mb-2">Tingkat Kepercayaan</p>
+                <div class="progress" style="height: 25px">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    id="confidence-bar"
+                    style="width: 0%"
+                  >
+                    <span id="confidence-text">0%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Result Message -->
+              <p class="lead mb-4" id="result-message">
+                Hasil analisis menunjukkan...
+              </p>
+
+              <!-- Action Buttons -->
+              <div class="d-flex justify-content-center gap-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  id="new-analysis-btn"
+                >
+                  <i class="bi bi-arrow-clockwise me-2"></i>Analisis Baru
+                </button>
+              </div>
+
+              <!-- Disclaimer -->
+              <div class="alert alert-warning mt-4 text-start">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                <strong>Perhatian:</strong> Hasil analisis ini bukan diagnosis
+                medis. Silakan konsultasikan dengan profesional kesehatan untuk
+                diagnosis yang akurat.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Section -->
+        <div class="error-section mt-4 d-none" id="error-section">
+          <div class="alert alert-danger d-flex align-items-center">
+            <i class="bi bi-exclamation-circle me-3 fs-4"></i>
+            <div>
+              <strong>Error!</strong>
+              <p class="mb-0" id="error-message">Terjadi kesalahan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Cara Kerja</h2>
+      <p class="text-muted">Proses analisis dalam 3 langkah sederhana</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="step-card text-center">
+          <div
+            class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+            style="
+              width: 60px;
+              height: 60px;
+              font-size: 1.5rem;
+              font-weight: bold;
+            "
+          >
+            1
+          </div>
+          <h5>Upload Gambar</h5>
+          <p class="text-muted">
+            Upload gambar wajah dengan format JPG atau PNG. Pastikan wajah
+            terlihat jelas.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="step-card text-center">
+          <div
+            class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+            style="
+              width: 60px;
+              height: 60px;
+              font-size: 1.5rem;
+              font-weight: bold;
+            "
+          >
+            2
+          </div>
+          <h5>Proses AI</h5>
+          <p class="text-muted">
+            Sistem mendeteksi wajah dengan MTCNN dan menganalisis menggunakan
+            model CNN.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="step-card text-center">
+          <div
+            class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+            style="
+              width: 60px;
+              height: 60px;
+              font-size: 1.5rem;
+              font-weight: bold;
+            "
+          >
+            3
+          </div>
+          <h5>Hasil Analisis</h5>
+          <p class="text-muted">
+            Dapatkan hasil prediksi dengan tingkat kepercayaan dalam hitungan
+            detik.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_js %}
+<script src="{% static 'js/classifier.js' %}"></script>
+{% endblock %}

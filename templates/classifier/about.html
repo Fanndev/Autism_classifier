@@ -1,0 +1,241 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Tentang - Autism
+Classifier{% endblock %} {% block content %}
+<!-- Hero Section -->
+<section class="about-hero py-5 bg-primary text-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h1 class="display-5 fw-bold mb-4">Tentang Autism Classifier</h1>
+        <p class="lead">
+          Aplikasi berbasis kecerdasan buatan untuk membantu deteksi dini
+          ciri-ciri autisme melalui analisis gambar wajah.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Content -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-4">Apa itu Autism Classifier?</h2>
+        <p>
+          Autism Classifier adalah aplikasi web yang menggunakan teknologi Deep
+          Learning untuk menganalisis gambar wajah dan mendeteksi kemungkinan
+          ciri-ciri autisme. Aplikasi ini dikembangkan sebagai alat bantu untuk
+          screening awal, bukan sebagai pengganti diagnosis medis profesional.
+        </p>
+        <p>
+          Dengan memanfaatkan model Convolutional Neural Network (CNN) yang
+          telah dilatih dengan dataset gambar wajah, aplikasi ini dapat
+          memberikan prediksi dengan tingkat akurasi yang cukup tinggi.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <div class="card border-0 shadow h-100">
+          <div class="card-body p-4">
+            <h4 class="card-title mb-4">
+              <i class="bi bi-gear text-primary me-2"></i>Teknologi yang
+              Digunakan
+            </h4>
+            <ul class="list-unstyled">
+              <li class="mb-3 d-flex">
+                <i class="bi bi-check-circle-fill text-success me-3 mt-1"></i>
+                <div>
+                  <strong
+                    >MTCNN (Multi-task Cascaded Convolutional Networks)</strong
+                  >
+                  <p class="text-muted mb-0 small">
+                    Untuk deteksi wajah, landmark detection, dan face alignment.
+                  </p>
+                </div>
+              </li>
+              <li class="mb-3 d-flex">
+                <i class="bi bi-check-circle-fill text-success me-3 mt-1"></i>
+                <div>
+                  <strong>Convolutional Neural Network (CNN)</strong>
+                  <p class="text-muted mb-0 small">
+                    Model deep learning untuk klasifikasi gambar wajah.
+                  </p>
+                </div>
+              </li>
+              <li class="mb-3 d-flex">
+                <i class="bi bi-check-circle-fill text-success me-3 mt-1"></i>
+                <div>
+                  <strong>TensorFlow & Keras</strong>
+                  <p class="text-muted mb-0 small">
+                    Framework machine learning untuk training dan inference.
+                  </p>
+                </div>
+              </li>
+              <li class="mb-3 d-flex">
+                <i class="bi bi-check-circle-fill text-success me-3 mt-1"></i>
+                <div>
+                  <strong>Django Web Framework</strong>
+                  <p class="text-muted mb-0 small">
+                    Backend framework dengan clean architecture pattern.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Arsitektur Model</h2>
+      <p class="text-muted">Struktur CNN yang digunakan untuk klasifikasi</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow">
+          <div class="card-body p-4">
+            <div class="architecture-flow">
+              <div class="row g-3 text-center">
+                <div class="col-md-4">
+                  <div class="arch-item p-3 bg-primary bg-opacity-10 rounded">
+                    <i class="bi bi-image text-primary fs-2 mb-2"></i>
+                    <h6>Input Layer</h6>
+                    <small class="text-muted">224 × 224 × 3</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="arch-item p-3 bg-info bg-opacity-10 rounded">
+                    <i class="bi bi-layers text-info fs-2 mb-2"></i>
+                    <h6>Conv2D Layers</h6>
+                    <small class="text-muted">24→32→64 filters</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="arch-item p-3 bg-success bg-opacity-10 rounded">
+                    <i
+                      class="bi bi-arrow-right-circle text-success fs-2 mb-2"
+                    ></i>
+                    <h6>Output</h6>
+                    <small class="text-muted">Sigmoid (0-1)</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <h6 class="mb-3">Detail Arsitektur:</h6>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Layer</th>
+                        <th>Type</th>
+                        <th>Parameters</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Input</td>
+                        <td>shape=(224, 224, 3)</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Conv2D + ReLU</td>
+                        <td>24 filters, 3×3 kernel</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>MaxPooling2D</td>
+                        <td>2×2 pool</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Conv2D + ReLU</td>
+                        <td>32 filters, 2×2 kernel</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>MaxPooling2D</td>
+                        <td>2×2 pool</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>Conv2D + ReLU</td>
+                        <td>64 filters, 1×1 kernel</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>MaxPooling2D</td>
+                        <td>2×2 pool</td>
+                      </tr>
+                      <tr>
+                        <td>8</td>
+                        <td>Flatten</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>9</td>
+                        <td>Dense + Sigmoid</td>
+                        <td>1 unit (binary output)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Disclaimer Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="alert alert-warning border-0 shadow">
+          <h4 class="alert-heading">
+            <i class="bi bi-exclamation-triangle me-2"></i>Disclaimer Penting
+          </h4>
+          <hr />
+          <p>
+            Aplikasi ini dikembangkan untuk tujuan edukasi dan penelitian. Hasil
+            prediksi yang diberikan <strong>BUKAN</strong> merupakan diagnosis
+            medis dan tidak boleh digunakan sebagai pengganti konsultasi dengan
+            profesional kesehatan.
+          </p>
+          <p class="mb-0">
+            Jika Anda memiliki kekhawatiran tentang perkembangan anak atau diri
+            sendiri, silakan berkonsultasi dengan:
+          </p>
+          <ul class="mt-2">
+            <li>Dokter Spesialis Anak</li>
+            <li>Psikiater atau Psikolog</li>
+            <li>Terapis Perkembangan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Siap Mencoba?</h2>
+    <p class="lead mb-4">
+      Upload gambar wajah untuk mendapatkan hasil analisis.
+    </p>
+    <a href="{% url 'home' %}#upload-section" class="btn btn-light btn-lg px-5">
+      <i class="bi bi-upload me-2"></i>Mulai Analisis Sekarang
+    </a>
+  </div>
+</section>
+{% endblock %}
