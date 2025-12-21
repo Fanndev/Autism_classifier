@@ -1,7 +1,1 @@
-/env
-/venv
-*.png
-*.jpg
-*.jpeg
-*.bmp
-*.zip
+.venv
