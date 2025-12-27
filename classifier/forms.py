@@ -2,10 +2,21 @@
 Django Forms for classifier app
 """
 from django import forms
+from django.conf import settings
 
 
 class ImageUploadForm(forms.Form):
     """Form for uploading images for classification."""
+    
+    model = forms.ChoiceField(
+        label='Pilih Model',
+        choices=settings.AVAILABLE_MODELS,
+        initial='autism_cnn_model(MTCNN).h5',
+        widget=forms.Select(attrs={
+            'class': 'form-select',
+            'id': 'model-select'
+        })
+    )
     
     image = forms.ImageField(
         label='Pilih Gambar',
