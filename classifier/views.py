@@ -48,6 +48,9 @@ def classify(request):
             'details': errors
         }, status=400)
     
+    # Get selected model
+    model_filename = form.cleaned_data['model']
+    
     # Save uploaded file temporarily
     image = form.cleaned_data['image']
     file_ext = os.path.splitext(image.name)[1]
@@ -66,7 +69,7 @@ def classify(request):
     
     try:
         # Get classifier service and classify image
-        service = get_classifier_service()
+        service = get_classifier_service(model_filename=model_filename)
         result = service.classify_image(file_path)
         
         if not result.success:
