@@ -97,13 +97,19 @@ class AutismClassifierService:
         return True, ""
 
 
-# Singleton instance for global access
-_classifier_service = None
-
-
-def get_classifier_service() -> AutismClassifierService:
-    """Get or create classifier service singleton."""
-    global _classifier_service
-    if _classifier_service is None:
-        _classifier_service = AutismClassifierService()
-    return _classifier_service
+# Service factory function
+def get_classifier_service(model_filename: Optional[str] = None) -> AutismClassifierService:
+    """
+    Create classifier service instance with specified model.
+    
+    Args:
+        model_filename: Name of the model file to use
+        
+    Returns:
+        AutismClassifierService instance
+    """
+    model_path = None
+    if model_filename:
+        model_path = settings.MODEL_DIR / model_filename
+    
+    return AutismClassifierService(model_path=model_path)
