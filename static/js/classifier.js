@@ -176,6 +176,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Prepare form data
     const formData = new FormData();
     formData.append("image", selectedFile);
+    
+    // Get selected model
+    const modelSelect = document.getElementById("model-select");
+    if (modelSelect) {
+      formData.append("model", modelSelect.value);
+    }
 
     // Get CSRF token
     const csrfToken = document.querySelector(

@@ -120,6 +120,17 @@ Classifier{% endblock %} {% block content %}
             <form id="upload-form" enctype="multipart/form-data">
               {% csrf_token %}
 
+              <!-- Model Selection -->
+              <div class="mb-4">
+                <label for="model-select" class="form-label fw-bold">
+                  <i class="bi bi-cpu me-2"></i>Pilih Model AI
+                </label>
+                {{ form.model }}
+                <div class="form-text">
+                  Pilih model yang akan digunakan untuk analisis
+                </div>
+              </div>
+
               <!-- Dropzone -->
               <div class="dropzone" id="dropzone">
                 <input
