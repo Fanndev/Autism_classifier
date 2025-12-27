@@ -80,11 +80,11 @@ def classify(request):
         response_data = {
             'success': True,
             'prediction': {
-                'label': prediction.label,
-                'confidence': prediction.confidence,
-                'confidence_percentage': prediction.confidence_percentage,
-                'is_autistic': prediction.is_autistic,
-                'message': prediction.result_message
+                'label': str(prediction.label),
+                'confidence': float(prediction.confidence),
+                'confidence_percentage': str(prediction.confidence_percentage),
+                'is_autistic': bool(prediction.is_autistic),
+                'message': str(prediction.result_message)
             }
         }
         

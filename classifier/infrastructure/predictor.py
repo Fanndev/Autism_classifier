@@ -64,15 +64,15 @@ class AutismPredictor(IPredictor):
         # Get prediction
         prediction = self.model.predict(image, verbose=0)[0][0]
         
-        # Model output: < 0.5 = Autistic, >= 0.5 = Non_Autistic
-        is_autistic = prediction < 0.5
+        # Model output: >= 0.5 = Autistic, < 0.5 = Non_Autistic
+        is_autistic = prediction >= 0.5
         
         if is_autistic:
             label = self.CLASSES[0]  # Autistic
-            confidence = 1 - prediction  # Confidence for Autistic
+            confidence = prediction  # Confidence for Autistic
         else:
             label = self.CLASSES[1]  # Non_Autistic
-            confidence = prediction  # Confidence for Non_Autistic
+            confidence = 1 - prediction  # Confidence for Non_Autistic
         
         return PredictionResult(
             label=label,
