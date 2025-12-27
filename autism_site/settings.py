@@ -124,7 +124,15 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # ML Model Configuration
-MODEL_PATH = BASE_DIR / 'notebooks' / 'model' / 'autism_cnn_model(MTCNN).h5'
+MODEL_DIR = BASE_DIR / 'notebooks' / 'model'
+MODEL_PATH = MODEL_DIR / 'autism_cnn_model(MTCNN).h5'
+
+# Available Models
+AVAILABLE_MODELS = [
+    ('autism_cnn_model.h5', 'Basic CNN Model'),
+    ('autism_cnn_model(MTCNN).h5', 'MTCNN Model (Default)'),
+    ('autism_cnn_model(test4val).h5', 'Test4Val Model'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
