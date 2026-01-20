@@ -1,13 +1,13 @@
 # Django Web Framework
 Django>=5.0.0,<6.0.0
 
-# Machine Learning & Deep Learning (CUDA 12.x / 13.x compatible)
-# Gunakan Python 3.11 untuk kompatibilitas terbaik
-# tensorflow[and-cuda]>=2.10.0
-# tensorflow-gpu sudah tidak diperlukan, tensorflow sudah include GPU support
+# Machine Learning & Deep Learning
+# CUDA 13.0 belum didukung TensorFlow!
+# Opsi 1: Install CUDA Toolkit 12.6 dari NVIDIA, lalu:
+tensorflow==2.18.0
 
-# Jika tidak menggunakan GPU, gunakan baris berikut
-# tensorflow>=2.15.0
+# Opsi 2: Gunakan PyTorch sebagai alternatif (support CUDA 13)
+# torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu131
 
 # Image Processing
 opencv-python>=4.8.0
