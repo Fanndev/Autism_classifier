@@ -3,5 +3,8 @@
 *.jpg
 *.pyc
 
+model
 
 datasets
+
+__pycache__
