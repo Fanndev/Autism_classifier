@@ -3,11 +3,11 @@ Django>=5.0.0,<6.0.0
 
 # Machine Learning & Deep Learning (CUDA 12.x / 13.x compatible)
 # Gunakan Python 3.11 untuk kompatibilitas terbaik
-# tensorflow[and-cuda]>=2.16.0
+# tensorflow[and-cuda]>=2.10.0
 # tensorflow-gpu sudah tidak diperlukan, tensorflow sudah include GPU support
 
 # Jika tidak menggunakan GPU, gunakan baris berikut
-tensorflow>=2.15.0
+# tensorflow>=2.15.0
 
 # Image Processing
 opencv-python>=4.8.0
