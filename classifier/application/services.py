@@ -8,7 +8,7 @@ from ..domain.entities import PredictionResult, ImageData
 from ..domain.interfaces import IPredictor, IImageProcessor
 from ..infrastructure.predictor import AutismPredictor
 from ..infrastructure.image_processor import MTCNNImageProcessor
-
+from django.conf import settings
 
 @dataclass
 class ClassificationResult:
@@ -111,5 +111,8 @@ def get_classifier_service(model_filename: Optional[str] = None) -> AutismClassi
     model_path = None
     if model_filename:
         model_path = settings.MODEL_DIR / model_filename
-    
-    return AutismClassifierService(model_path=model_path)
+
+    # Create predictor with the requested model (or default inside AutismPredictor)
+    predictor = AutismPredictor(model_path=model_path)
+
+    return AutismClassifierService(predictor=predictor)
