@@ -129,9 +129,10 @@ MODEL_PATH = MODEL_DIR / 'autism_cnn_model(MTCNN).h5'
 
 # Available Models
 AVAILABLE_MODELS = [
-    ('autism_cnn_model.h5', 'Basic CNN Model'),
-    ('autism_cnn_model(MTCNN).h5', 'MTCNN Model (Default)'),
-    ('autism_cnn_model(test4val).h5', 'Test4Val Model'),
+    ('autism_cnn_model.h5', 'Basic CNN Model (TensorFlow)'),
+    ('autism_cnn_model(MTCNN).h5', 'MTCNN Model (TensorFlow)'),
+    ('autism_cnn_model(test4val).h5', 'Test4Val Model (TensorFlow)'),
+    ('autism_cnn_model_by_qullah.pth', 'Qullah Model (PyTorch)'),
 ]
 
 # Default primary key field type

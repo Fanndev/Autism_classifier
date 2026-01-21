@@ -108,11 +108,23 @@ def get_classifier_service(model_filename: Optional[str] = None) -> AutismClassi
     Returns:
         AutismClassifierService instance
     """
+    from ..infrastructure.predictor import AutismPredictor, PyTorchPredictor
+    
     model_path = None
+    predictor = None
+    
     if model_filename:
         model_path = settings.MODEL_DIR / model_filename
-
-    # Create predictor with the requested model (or default inside AutismPredictor)
-    predictor = AutismPredictor(model_path=model_path)
+        
+        # Choose predictor based on file extension
+        if model_filename.endswith('.pth'):
+            # PyTorch model
+            predictor = PyTorchPredictor(model_path=model_path)
+        else:
+            # TensorFlow/Keras model (.h5)
+            predictor = AutismPredictor(model_path=model_path)
+    else:
+        # Default to TensorFlow predictor
+        predictor = AutismPredictor()
 
     return AutismClassifierService(predictor=predictor)
